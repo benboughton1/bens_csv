@@ -1,0 +1,15 @@
+{
+  "width": 500,
+  "height": 400,
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+  "data": {"url": "https://raw.githubusercontent.com/benboughton1/bens_csv/master/csv2.csv"},
+
+  "mark": {
+    "type": "line", "color": "green", "point": {"color": "red"}
+  },
+  "encoding": {
+    "x": {"field": "date", "type": "temporal"},
+    "y": {"field": "mean", "type": "quantitative"},
+    "color": {"field": "field", "type": "nominal"}
+  }
+}
