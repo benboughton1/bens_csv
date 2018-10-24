@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>AgCloud Pricing Calculator</h2>
+
+  Number of growers:<br>
+  <input type="text" id="growers" value="10">
+  <br><br>
+  Type:<br>
+   <select id="diy" size="2">
+    <option value="diy" selected="selected">DIY</option>
+    <option value="not_diy">Not DIY</option>
+   </select>
+  <br><br>
+  <input type="checkbox" id="satamap"> Satamap
+  <br><br>
+  <button onclick="submit()">Submit</button>
+  
+  <p>Price per month: <span id='ppm'></span></p>
+  <p>Price per year total: <span id='ppy'></span></p>
+  <p>Price per year per grower: <span id='ppg'></span></p>
+  
+  
+<script>
+function submit() {
+	var growers = parseInt(document.getElementById("growers").value);
+	var type = document.getElementById("diy").value
+    var smap = document.getElementById("satamap").checked
+    
+    if (type == 'diy') {
+    	var cost = (0.0205*(growers*growers*growers))-(8.0763*(growers*growers))+(1091.7*growers)+1131.7
+    } else {
+    	var cost = (0.0205*(growers*growers*growers))-(8.0763*(growers*growers))+(1091.7*growers)+1131.7 + (growers*500)
+    }
+    
+    if (smap == true) {
+    	var satamap = growers * 250
+    } else {
+    	var satamap = 0
+    }
+
+    var total = Math.ceil(cost + satamap)
+    var total_ppm = Math.ceil((cost + satamap) / 12)
+    var total_ppy_grower = Math.ceil((cost + satamap) / growers)
+    
+    if (growers < 6) {
+    	total_ppm = 'Not available'
+    }
+    
+    document.getElementById("ppm").innerHTML = total_ppm
+    document.getElementById("ppy").innerHTML = total
+    document.getElementById("ppg").innerHTML = total_ppy_grower
+}
+</script>
+</body>
+</html>
